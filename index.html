@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Huruf - Hijaiyyah & Abjadiyyah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .rainbow-bg {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            background-size: 400% 400%;
+            animation: rainbow 3s ease infinite;
+        }
+        
+        @keyframes rainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.6s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .wiggle {
+            animation: wiggle 0.5s ease-in-out;
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen rainbow-bg">
+    <div class="container mx-auto px-4 py-6 max-w-6xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-2 drop-shadow-lg">
+                🌟 Belajar Huruf 🌟
+            </h1>
+            <p class="text-lg md:text-xl text-white/90 font-medium">
+                Mari belajar huruf Hijaiyyah dan Abjadiyyah dengan seronok!
+            </p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="flex flex-wrap justify-center mb-8 bg-white/20 backdrop-blur-sm rounded-2xl p-2">
+            <button onclick="showTab('hijaiyyah')" id="tab-hijaiyyah" class="tab-btn flex-1 min-w-0 px-3 py-3 mx-1 mb-2 md:mb-0 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 bg-white text-purple-600 shadow-lg">
+                📖 Huruf Hijaiyyah
+            </button>
+            <button onclick="showTab('abjadiyyah')" id="tab-abjadiyyah" class="tab-btn flex-1 min-w-0 px-3 py-3 mx-1 mb-2 md:mb-0 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 bg-white/30 text-white hover:bg-white/50">
+                🔤 Huruf Abjadiyyah
+            </button>
+            <button onclick="showTab('kuiz')" id="tab-kuiz" class="tab-btn flex-1 min-w-0 px-3 py-3 mx-1 mb-2 md:mb-0 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 bg-white/30 text-white hover:bg-white/50">
+                🧠 Kuiz
+            </button>
+            <button onclick="showTab('permainan')" id="tab-permainan" class="tab-btn flex-1 min-w-0 px-3 py-3 mx-1 mb-2 md:mb-0 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 bg-white/30 text-white hover:bg-white/50">
+                🎮 Permainan
+            </button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="bg-white/95 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-2xl">
+            
+            <!-- Hijaiyyah Tab -->
+            <div id="content-hijaiyyah" class="tab-content">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-4xl font-bold text-purple-600 mb-4">🕌 Huruf Hijaiyyah</h2>
+                    <p class="text-gray-600 text-base md:text-lg">Klik pada huruf untuk belajar!</p>
+                </div>
+                
+                <div class="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-7 gap-3 md:gap-4">
+                    <!-- Hijaiyyah Letters -->
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-green-400 to-green-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ا">ا</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-blue-400 to-blue-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ب">ب</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-purple-400 to-purple-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ت">ت</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-pink-400 to-pink-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ث">ث</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-red-400 to-red-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ج">ج</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-orange-400 to-orange-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ح">ح</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-yellow-400 to-yellow-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="خ">خ</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-teal-400 to-teal-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="د">د</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-cyan-400 to-cyan-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ذ">ذ</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-indigo-400 to-indigo-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ر">ر</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-violet-400 to-violet-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ز">ز</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-rose-400 to-rose-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="س">س</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-emerald-400 to-emerald-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ش">ش</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-lime-400 to-lime-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ص">ص</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-amber-400 to-amber-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ض">ض</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-stone-400 to-stone-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ط">ط</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-slate-400 to-slate-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ظ">ظ</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-zinc-400 to-zinc-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ع">ع</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-neutral-400 to-neutral-600 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="غ">غ</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-green-500 to-green-700 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ف">ف</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-blue-500 to-blue-700 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ق">ق</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-purple-500 to-purple-700 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ك">ك</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-pink-500 to-pink-700 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ل">ل</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-red-500 to-red-700 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="م">م</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-orange-500 to-orange-700 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ن">ن</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-yellow-500 to-yellow-700 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ه">ه</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-teal-500 to-teal-700 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="و">و</button>
+                    <button class="hijaiyyah-btn bg-gradient-to-br from-cyan-500 to-cyan-700 text-white text-2xl md:text-4xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="ي">ي</button>
+                </div>
+            </div>
+
+            <!-- Abjadiyyah Tab -->
+            <div id="content-abjadiyyah" class="tab-content hidden">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-4xl font-bold text-blue-600 mb-4">🔤 Huruf Abjadiyyah</h2>
+                    <p class="text-gray-600 text-base md:text-lg">Klik pada huruf untuk belajar!</p>
+                </div>
+                
+                <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4">
+                    <!-- Alphabet Letters -->
+                    <button class="abjad-btn bg-gradient-to-br from-red-400 to-red-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="A">A</button>
+                    <button class="abjad-btn bg-gradient-to-br from-orange-400 to-orange-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="B">B</button>
+                    <button class="abjad-btn bg-gradient-to-br from-yellow-400 to-yellow-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="C">C</button>
+                    <button class="abjad-btn bg-gradient-to-br from-green-400 to-green-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="D">D</button>
+                    <button class="abjad-btn bg-gradient-to-br from-teal-400 to-teal-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="E">E</button>
+                    <button class="abjad-btn bg-gradient-to-br from-blue-400 to-blue-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="F">F</button>
+                    <button class="abjad-btn bg-gradient-to-br from-indigo-400 to-indigo-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="G">G</button>
+                    <button class="abjad-btn bg-gradient-to-br from-purple-400 to-purple-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="H">H</button>
+                    <button class="abjad-btn bg-gradient-to-br from-pink-400 to-pink-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="I">I</button>
+                    <button class="abjad-btn bg-gradient-to-br from-rose-400 to-rose-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="J">J</button>
+                    <button class="abjad-btn bg-gradient-to-br from-red-500 to-red-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="K">K</button>
+                    <button class="abjad-btn bg-gradient-to-br from-orange-500 to-orange-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="L">L</button>
+                    <button class="abjad-btn bg-gradient-to-br from-yellow-500 to-yellow-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="M">M</button>
+                    <button class="abjad-btn bg-gradient-to-br from-green-500 to-green-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="N">N</button>
+                    <button class="abjad-btn bg-gradient-to-br from-teal-500 to-teal-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="O">O</button>
+                    <button class="abjad-btn bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="P">P</button>
+                    <button class="abjad-btn bg-gradient-to-br from-indigo-500 to-indigo-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="Q">Q</button>
+                    <button class="abjad-btn bg-gradient-to-br from-purple-500 to-purple-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="R">R</button>
+                    <button class="abjad-btn bg-gradient-to-br from-pink-500 to-pink-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="S">S</button>
+                    <button class="abjad-btn bg-gradient-to-br from-rose-500 to-rose-700 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="T">T</button>
+                    <button class="abjad-btn bg-gradient-to-br from-emerald-400 to-emerald-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="U">U</button>
+                    <button class="abjad-btn bg-gradient-to-br from-cyan-400 to-cyan-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="V">V</button>
+                    <button class="abjad-btn bg-gradient-to-br from-violet-400 to-violet-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="W">W</button>
+                    <button class="abjad-btn bg-gradient-to-br from-lime-400 to-lime-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="X">X</button>
+                    <button class="abjad-btn bg-gradient-to-br from-amber-400 to-amber-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="Y">Y</button>
+                    <button class="abjad-btn bg-gradient-to-br from-stone-400 to-stone-600 text-white text-xl md:text-3xl font-bold py-4 md:py-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" data-letter="Z">Z</button>
+                </div>
+            </div>
+
+            <!-- Kuiz Tab -->
+            <div id="content-kuiz" class="tab-content hidden">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-4xl font-bold text-green-600 mb-4">🧠 Kuiz Huruf</h2>
+                    <p class="text-gray-600 text-base md:text-lg">Uji pengetahuan anda!</p>
+                </div>
+                
+                <div class="max-w-2xl mx-auto">
+                    <div id="quiz-container" class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-6 md:p-8 shadow-lg">
+                        <div class="text-center mb-6">
+                            <div class="text-4xl md:text-6xl font-bold text-purple-600 mb-4" id="quiz-letter">ا</div>
+                            <p class="text-lg md:text-xl text-gray-700 mb-6">Apakah nama huruf ini?</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <button class="quiz-option bg-white hover:bg-blue-100 text-gray-800 font-semibold py-4 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-base md:text-lg" onclick="checkAnswer(this, false)">Ba</button>
+                            <button class="quiz-option bg-white hover:bg-blue-100 text-gray-800 font-semibold py-4 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-base md:text-lg" onclick="checkAnswer(this, true)">Alif</button>
+                            <button class="quiz-option bg-white hover:bg-blue-100 text-gray-800 font-semibold py-4 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-base md:text-lg" onclick="checkAnswer(this, false)">Ta</button>
+                            <button class="quiz-option bg-white hover:bg-blue-100 text-gray-800 font-semibold py-4 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-base md:text-lg" onclick="checkAnswer(this, false)">Tha</button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="text-lg md:text-xl font-semibold text-gray-700 mb-4">
+                                Skor: <span id="quiz-score" class="text-green-600">0</span>/10
+                            </div>
+                            <button onclick="nextQuestion()" id="next-btn" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50" disabled>
+                                Soalan Seterusnya
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Permainan Tab -->
+            <div id="content-permainan" class="tab-content hidden">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-4xl font-bold text-orange-600 mb-4">🎮 Permainan Interaktif</h2>
+                    <p class="text-gray-600 text-base md:text-lg">Pilih permainan yang anda suka!</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <button onclick="showGame('flip')" class="game-selector bg-gradient-to-br from-purple-500 to-pink-500 text-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                        <div class="text-4xl md:text-6xl mb-4">🔄</div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2">Flip Card</h3>
+                        <p class="text-sm md:text-base opacity-90">Teka huruf yang tersembunyi!</p>
+                    </button>
+                    
+                    <button onclick="showGame('color')" class="game-selector bg-gradient-to-br from-blue-500 to-teal-500 text-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                        <div class="text-4xl md:text-6xl mb-4">🎨</div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2">Lorek Huruf</h3>
+                        <p class="text-sm md:text-base opacity-90">Warnakan huruf dengan cantik!</p>
+                    </button>
+                </div>
+                
+                <!-- Flip Card Game -->
+                <div id="flip-game" class="game-content hidden">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-purple-600 mb-2">🔄 Permainan Flip Card</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Klik kad untuk melihat huruf!</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                        <!-- Flip cards will be generated by JavaScript -->
+                    </div>
+                    
+                    <div class="text-center mt-6">
+                        <button onclick="resetFlipGame()" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            Main Semula
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Coloring Game -->
+                <div id="color-game" class="game-content hidden">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl md:text-2xl font-bold text-blue-600 mb-2">🎨 Permainan Lorek Huruf</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Pilih warna dan klik huruf untuk mewarna!</p>
+                    </div>
+                    
+                    <div class="max-w-4xl mx-auto">
+                        <!-- Color palette -->
+                        <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-6">
+                            <button class="color-btn w-8 h-8 md:w-12 md:h-12 rounded-full border-4 border-white shadow-lg hover:scale-110 transition-all duration-300 bg-red-500" onclick="selectColor('#ef4444')"></button>
+                            <button class="color-btn w-8 h-8 md:w-12 md:h-12 rounded-full border-4 border-white shadow-lg hover:scale-110 transition-all duration-300 bg-orange-500" onclick="selectColor('#f97316')"></button>
+                            <button class="color-btn w-8 h-8 md:w-12 md:h-12 rounded-full border-4 border-white shadow-lg hover:scale-110 transition-all duration-300 bg-yellow-500" onclick="selectColor('#eab308')"></button>
+                            <button class="color-btn w-8 h-8 md:w-12 md:h-12 rounded-full border-4 border-white shadow-lg hover:scale-110 transition-all duration-300 bg-green-500" onclick="selectColor('#22c55e')"></button>
+                            <button class="color-btn w-8 h-8 md:w-12 md:h-12 rounded-full border-4 border-white shadow-lg hover:scale-110 transition-all duration-300 bg-blue-500" onclick="selectColor('#3b82f6')"></button>
+                            <button class="color-btn w-8 h-8 md:w-12 md:h-12 rounded-full border-4 border-white shadow-lg hover:scale-110 transition-all duration-300 bg-purple-500" onclick="selectColor('#a855f7')"></button>
+                            <button class="color-btn w-8 h-8 md:w-12 md:h-12 rounded-full border-4 border-white shadow-lg hover:scale-110 transition-all duration-300 bg-pink-500" onclick="selectColor('#ec4899')"></button>
+                        </div>
+                        
+                        <!-- Coloring letters -->
+                        <div class="grid grid-cols-4 md:grid-cols-6 gap-4">
+                            <div class="coloring-letter bg-white border-4 border-gray-300 rounded-2xl p-4 text-center cursor-pointer hover:shadow-lg transition-all duration-300" onclick="colorLetter(this)">
+                                <div class="text-3xl md:text-5xl font-bold text-gray-400">ا</div>
+                            </div>
+                            <div class="coloring-letter bg-white border-4 border-gray-300 rounded-2xl p-4 text-center cursor-pointer hover:shadow-lg transition-all duration-300" onclick="colorLetter(this)">
+                                <div class="text-3xl md:text-5xl font-bold text-gray-400">ب</div>
+                            </div>
+                            <div class="coloring-letter bg-white border-4 border-gray-300 rounded-2xl p-4 text-center cursor-pointer hover:shadow-lg transition-all duration-300" onclick="colorLetter(this)">
+                                <div class="text-3xl md:text-5xl font-bold text-gray-400">ت</div>
+                            </div>
+                            <div class="coloring-letter bg-white border-4 border-gray-300 rounded-2xl p-4 text-center cursor-pointer hover:shadow-lg transition-all duration-300" onclick="colorLetter(this)">
+                                <div class="text-3xl md:text-5xl font-bold text-gray-400">A</div>
+                            </div>
+                            <div class="coloring-letter bg-white border-4 border-gray-300 rounded-2xl p-4 text-center cursor-pointer hover:shadow-lg transition-all duration-300" onclick="colorLetter(this)">
+                                <div class="text-3xl md:text-5xl font-bold text-gray-400">B</div>
+                            </div>
+                            <div class="coloring-letter bg-white border-4 border-gray-300 rounded-2xl p-4 text-center cursor-pointer hover:shadow-lg transition-all duration-300" onclick="colorLetter(this)">
+                                <div class="text-3xl md:text-5xl font-bold text-gray-400">C</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-6">
+                            <button onclick="resetColorGame()" class="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 text-white font-bold py-3 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                                Kosongkan Semua
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentQuizQuestion = 0;
+        let quizScore = 0;
+        let selectedColor = '#ef4444';
+        
+        const hijaiyyahLetters = [
+            {letter: 'ا', name: 'Alif'}, {letter: 'ب', name: 'Ba'}, {letter: 'ت', name: 'Ta'}, {letter: 'ث', name: 'Tha'},
+            {letter: 'ج', name: 'Jim'}, {letter: 'ح', name: 'Ha'}, {letter: 'خ', name: 'Kha'}, {letter: 'د', name: 'Dal'},
+            {letter: 'ذ', name: 'Dzal'}, {letter: 'ر', name: 'Ra'}, {letter: 'ز', name: 'Zai'}, {letter: 'س', name: 'Sin'},
+            {letter: 'ش', name: 'Syin'}, {letter: 'ص', name: 'Shad'}, {letter: 'ض', name: 'Dhad'}, {letter: 'ط', name: 'Tha'},
+            {letter: 'ظ', name: 'Zha'}, {letter: 'ع', name: 'Ain'}, {letter: 'غ', name: 'Ghain'}, {letter: 'ف', name: 'Fa'},
+            {letter: 'ق', name: 'Qaf'}, {letter: 'ك', name: 'Kaf'}, {letter: 'ل', name: 'Lam'}, {letter: 'م', name: 'Mim'},
+            {letter: 'ن', name: 'Nun'}, {letter: 'ه', name: 'Ha'}, {letter: 'و', name: 'Waw'}, {letter: 'ي', name: 'Ya'}
+        ];
+
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-purple-600', 'shadow-lg');
+                btn.classList.add('bg-white/30', 'text-white', 'hover:bg-white/50');
+            });
+            
+            // Show selected tab content
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+            
+            // Add active class to selected tab
+            const activeTab = document.getElementById(`tab-${tabName}`);
+            activeTab.classList.remove('bg-white/30', 'text-white', 'hover:bg-white/50');
+            activeTab.classList.add('bg-white', 'text-purple-600', 'shadow-lg');
+            
+            // Initialize specific tab content
+            if (tabName === 'kuiz') {
+                initQuiz();
+            } else if (tabName === 'permainan') {
+                initGames();
+            }
+        }
+
+        // Letter button handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hijaiyyah buttons with external links
+            const hijaiyyahLinks = {
+                'ا': 'https://gemini.google.com/u/2/gem/storybook/e35def5660f61058?canvas-id=c_e35def5660f61058_amir_dan_pengembaraan_alif_1.md&full-screen=true&hl=en-MY&pli=1',
+                'ب': 'https://gemini.google.com/u/2/gem/storybook/e35def5660f61058?canvas-id=c_e35def5660f61058_amir_dan_pengembaraan_ba_1.md&full-screen=true&hl=en-MY&pli=1',
+                'ت': 'https://gemini.google.com/u/2/gem/storybook/e35def5660f61058?canvas-id=c_e35def5660f61058_amir_dan_pengembaraan_ta_1.md&full-screen=true&hl=en-MY&pli=1',
+                'ث': 'https://gemini.google.com/u/2/gem/storybook/e35def5660f61058?canvas-id=c_e35def5660f61058_amir_dan_pengembaraan_tha_1.md&full-screen=true&hl=en-MY&pli=1',
+                'ج': 'https://gemini.google.com/u/2/gem/storybook/e35def5660f61058?canvas-id=c_e35def5660f61058_amir_dan_pengembaraan_jim_1.md&full-screen=true&hl=en-MY&pli=1'
+            };
+            
+            document.querySelectorAll('.hijaiyyah-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.classList.add('wiggle');
+                    setTimeout(() => this.classList.remove('wiggle'), 500);
+                    
+                    const letter = this.dataset.letter;
+                    const link = hijaiyyahLinks[letter];
+                    
+                    if (link) {
+                        // Open external link in new tab
+                        window.open(link, '_blank', 'noopener,noreferrer');
+                    } else {
+                        alert(`Huruf ${letter} - Link akan ditambah tidak lama lagi!`);
+                    }
+                });
+            });
+            
+            // Abjadiyyah buttons
+            document.querySelectorAll('.abjad-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.classList.add('wiggle');
+                    setTimeout(() => this.classList.remove('wiggle'), 500);
+                    
+                    // Here you would add your external link
+                    alert(`Anda klik huruf ${this.dataset.letter}! \nSila tambah external link anda di sini.`);
+                });
+            });
+        });
+
+        // Quiz functions
+        function initQuiz() {
+            currentQuizQuestion = 0;
+            quizScore = 0;
+            document.getElementById('quiz-score').textContent = quizScore;
+            generateQuizQuestion();
+        }
+
+        function generateQuizQuestion() {
+            if (currentQuizQuestion >= 10) {
+                showQuizResults();
+                return;
+            }
+            
+            const randomLetter = hijaiyyahLetters[Math.floor(Math.random() * hijaiyyahLetters.length)];
+            document.getElementById('quiz-letter').textContent = randomLetter.letter;
+            
+            // Generate options
+            const options = [randomLetter.name];
+            while (options.length < 4) {
+                const randomOption = hijaiyyahLetters[Math.floor(Math.random() * hijaiyyahLetters.length)].name;
+                if (!options.includes(randomOption)) {
+                    options.push(randomOption);
+                }
+            }
+            
+            // Shuffle options
+            for (let i = options.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [options[i], options[j]] = [options[j], options[i]];
+            }
+            
+            // Update option buttons
+            const optionButtons = document.querySelectorAll('.quiz-option');
+            optionButtons.forEach((btn, index) => {
+                btn.textContent = options[index];
+                btn.onclick = () => checkAnswer(btn, options[index] === randomLetter.name);
+                btn.classList.remove('bg-green-200', 'bg-red-200');
+                btn.classList.add('bg-white', 'hover:bg-blue-100');
+                btn.disabled = false;
+            });
+            
+            document.getElementById('next-btn').disabled = true;
+        }
+
+        function checkAnswer(button, isCorrect) {
+            // Disable all option buttons
+            document.querySelectorAll('.quiz-option').forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('hover:bg-blue-100');
+            });
+            
+            if (isCorrect) {
+                button.classList.remove('bg-white');
+                button.classList.add('bg-green-200');
+                quizScore++;
+                document.getElementById('quiz-score').textContent = quizScore;
+            } else {
+                button.classList.remove('bg-white');
+                button.classList.add('bg-red-200');
+                
+                // Show correct answer
+                document.querySelectorAll('.quiz-option').forEach(btn => {
+                    if (btn.textContent === document.getElementById('quiz-letter').textContent) {
+                        // Find correct answer logic would go here
+                    }
+                });
+            }
+            
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            currentQuizQuestion++;
+            generateQuizQuestion();
+        }
+
+        function showQuizResults() {
+            const percentage = (quizScore / 10) * 100;
+            let message = '';
+            
+            if (percentage >= 80) {
+                message = '🌟 Hebat sekali! Anda sangat pandai!';
+            } else if (percentage >= 60) {
+                message = '👍 Bagus! Teruskan usaha!';
+            } else {
+                message = '💪 Jangan berputus asa! Cuba lagi!';
+            }
+            
+            document.getElementById('quiz-container').innerHTML = `
+                <div class="text-center">
+                    <div class="text-6xl mb-4">🎉</div>
+                    <h3 class="text-2xl font-bold text-purple-600 mb-4">Kuiz Selesai!</h3>
+                    <div class="text-4xl font-bold text-green-600 mb-4">${quizScore}/10</div>
+                    <p class="text-xl text-gray-700 mb-6">${message}</p>
+                    <button onclick="initQuiz()" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        Main Semula
+                    </button>
+                </div>
+            `;
+        }
+
+        // Game functions
+        function initGames() {
+            // Hide all games initially
+            document.querySelectorAll('.game-content').forEach(game => {
+                game.classList.add('hidden');
+            });
+        }
+
+        function showGame(gameType) {
+            // Hide all games
+            document.querySelectorAll('.game-content').forEach(game => {
+                game.classList.add('hidden');
+            });
+            
+            if (gameType === 'flip') {
+                document.getElementById('flip-game').classList.remove('hidden');
+                initFlipGame();
+            } else if (gameType === 'color') {
+                document.getElementById('color-game').classList.remove('hidden');
+            }
+        }
+
+        function initFlipGame() {
+            const flipGameContainer = document.querySelector('#flip-game .grid');
+            const letters = ['ا', 'ب', 'ت', 'ث', 'A', 'B', 'C', 'D'];
+            
+            flipGameContainer.innerHTML = '';
+            
+            letters.forEach((letter, index) => {
+                const card = document.createElement('div');
+                card.className = 'flip-card h-24 md:h-32 cursor-pointer';
+                card.innerHTML = `
+                    <div class="flip-card-inner h-full">
+                        <div class="flip-card-front bg-gradient-to-br from-purple-400 to-pink-400">
+                            <div class="text-2xl md:text-4xl">❓</div>
+                        </div>
+                        <div class="flip-card-back bg-gradient-to-br from-blue-400 to-teal-400 text-white">
+                            <div class="text-2xl md:text-4xl font-bold">${letter}</div>
+                        </div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', function() {
+                    this.classList.toggle('flipped');
+                });
+                
+                flipGameContainer.appendChild(card);
+            });
+        }
+
+        function resetFlipGame() {
+            document.querySelectorAll('.flip-card').forEach(card => {
+                card.classList.remove('flipped');
+            });
+        }
+
+        function selectColor(color) {
+            selectedColor = color;
+            
+            // Update color button selection
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.classList.remove('ring-4', 'ring-gray-800');
+            });
+            
+            event.target.classList.add('ring-4', 'ring-gray-800');
+        }
+
+        function colorLetter(element) {
+            const letterDiv = element.querySelector('div');
+            letterDiv.style.color = selectedColor;
+            letterDiv.classList.remove('text-gray-400');
+            
+            // Add bounce animation
+            element.classList.add('bounce-in');
+            setTimeout(() => element.classList.remove('bounce-in'), 600);
+        }
+
+        function resetColorGame() {
+            document.querySelectorAll('.coloring-letter div').forEach(letterDiv => {
+                letterDiv.style.color = '';
+                letterDiv.classList.add('text-gray-400');
+            });
+        }
+
+        // Initialize first tab
+        showTab('hijaiyyah');
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9817e4c11294fc5d',t:'MTc1ODI3MjQzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
